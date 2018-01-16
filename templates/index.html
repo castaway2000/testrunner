@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="container">
+        <div class="row row-wrap">
+            <div class="col-md-6">
+                <h2>Repo's</h2>
+                <div class="list-group">
+                    <div class="list-group-item">
+                        <form action="." method="post" enctype="application/x-www-form-urlencoded">
+                            {% csrf_token %}
+                            <label>Select your test</label>
+                            <br/>
+                            <select class="mdb-select colorful-select dropdown-primary scrollable-menu" multiple searchable="Search here..">
+                                <option value="" disabled selected>Choose your country</option>
+                                <option value="1">Test To run</option>
+                                <option value="2">Other Test</option>
+                                <option value="3">Test To run</option>
+                                <option value="4">Other Test</option>
+                                <option value="5">Test To run</option>
+                                <option value="6">Other Test</option>
+                            </select>
+                            <br/><br/>
+                            <label>Select your host</label>
+                            <br/>
+                            <select class="mdb-select colorful-select dropdown-primary scrollable-menu" multiple searchable="Search here..">
+                                <option value="" disabled selected>Choose your country</option>
+                                <option value="1">Host1</option>
+                                <option value="1">Host2</option>
+                            </select>
+                            <br/><br/>
+                            <button type="submit" class="btn-md btn-danger">Run Tests</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                    <h2>About:</h2>
+                    <div class="panel panel-default">
+                    <div class="panel-body">Please click on the desired git repo to retreive the issues and comments.
+                        Some repositories have many issues so please be patient as the the api corelates data for you.
+                        I would have included a spinner but im not sure how to do that yet.</div>
+                    </div>
+                    <h3>Thoughts:</h3>
+                    <div class="panel panel-default">
+                    <div class="panel-body">This was a fun project to do regardless. It constantly kept me thinking
+                        about what features I could add and where I could optimize. Even if im not selected I will keep
+                        this project to play around with.
+                    <br/><br/>
+                        I had originally thought to store the data and re-serve it via an api.
+                        the initial framework can be seen at /api/v1
+                    <br/><br/>
+                        I ended up not doing this as I felt this would only serve a purpose of internalizing api calls
+                        rather than traversing the net. I could have just as easily stored and served this via a
+                        database but that was not was asked via the instructions.
+                    <br/><br/>
+                        Lastly, there is a few links below on the footer where you can find my resume, github and
+                        the provided instructons.
+                    </div>
+                    </div>
+                    <h3>Notes:</h3>
+                    <div class="panel panel-default">
+                    <div class="panel-body">
+                        Regarding the deployement:
+                        This is running on AWS with Django and gunicorn.
+                        port forwarding is running through iptables rather than nginx as for this project I felt it
+                        was overkill as I was not serving up a domain name or routing to https
+                    </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
