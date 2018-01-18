@@ -1,10 +1,9 @@
-import requests
-from dateutil import parser, tz
+from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render
 from django.contrib.auth.models import User, Group
 
+from dateutil import parser, tz
 from rest_framework import viewsets
-
 
 from .serializers import UserSerializer, GroupSerializer
 
@@ -13,6 +12,7 @@ def handle_datetime(date):
     to_zone = tz.tzlocal()
     time = parser.parse(date).replace().astimezone(to_zone)
     return time
+
 
 def home(request):
     if request.POST:
@@ -33,6 +33,11 @@ def results_page(request):
         print(request.POST.items)
     context = {'foo': 'foobar'}
     return render(request, '../templates/results.html', context)
+
+
+def admin_page(request):
+    return HttpResponseRedirect('admin')
+
 
 
 # created for the purpose of adding endpoints for repurposing the data but i think that might be overkill for this task.

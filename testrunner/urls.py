@@ -29,6 +29,7 @@ router.register(r'groups', views.GroupViewSet)
 urlpatterns = [
     url(r'^$', views.home, name='home'),
     url(r'^admin/', admin.site.urls),
+    url(r'^admin/', views.admin_page, name='admin_page'),
     url(r'^tests/', views.tests_page, name='tests'),
     url(r'^results/', views.results_page, name='results'),
 

@@ -2,30 +2,28 @@
 {% block content %}
     <div class="container">
         <div class="row row-wrap">
-            <div class="col-md-6">
-                <h2>Repo's</h2>
+            <div class="col-md-5">
+                <h2>Do the thing!</h2>
                 <div class="list-group">
                     <div class="list-group-item">
                         <form action="." method="post" enctype="application/x-www-form-urlencoded">
                             {% csrf_token %}
                             <label>Select your test</label>
                             <br/>
-                            <select class="mdb-select colorful-select dropdown-primary scrollable-menu" multiple searchable="Search here..">
-                                <option value="" disabled selected>Choose your country</option>
+                            <select class="mdb-select colorful-select dropdown-primary scrollable-menu" style="width: 300px" multiple searchable="Search here..">
                                 <option value="1">Test To run</option>
                                 <option value="2">Other Test</option>
-                                <option value="3">Test To run</option>
-                                <option value="4">Other Test</option>
-                                <option value="5">Test To run</option>
-                                <option value="6">Other Test</option>
+                                <option value="3">Test To run1</option>
+                                <option value="4">Other Test1</option>
+           s                    <option value="5">Test To run2</option>
+                                <option value="6">Other Test2</option>
                             </select>
                             <br/><br/>
-                            <label>Select your host</label>
+                            <label>Select your target</label>
                             <br/>
-                            <select class="mdb-select colorful-select dropdown-primary scrollable-menu" multiple searchable="Search here..">
-                                <option value="" disabled selected>Choose your country</option>
-                                <option value="1">Host1</option>
-                                <option value="1">Host2</option>
+                            <select class="mdb-select colorful-select dropdown-primary scrollable-menu" style="width: 300px" multiple searchable="Search here..">
+                                <option value="Host1">Host1 - 127.0.0.1</option>
+                                <option value="Host2">Host2 - google.com</option>
                             </select>
                             <br/><br/>
                             <button type="submit" class="btn-md btn-danger">Run Tests</button>
@@ -33,37 +31,22 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-6">
-                    <h2>About:</h2>
+            <div class="col-md-7">
+                    <h2>Setup:</h2>
                     <div class="panel panel-default">
-                    <div class="panel-body">Please click on the desired git repo to retreive the issues and comments.
-                        Some repositories have many issues so please be patient as the the api corelates data for you.
-                        I would have included a spinner but im not sure how to do that yet.</div>
-                    </div>
-                    <h3>Thoughts:</h3>
-                    <div class="panel panel-default">
-                    <div class="panel-body">This was a fun project to do regardless. It constantly kept me thinking
-                        about what features I could add and where I could optimize. Even if im not selected I will keep
-                        this project to play around with.
-                    <br/><br/>
-                        I had originally thought to store the data and re-serve it via an api.
-                        the initial framework can be seen at /api/v1
-                    <br/><br/>
-                        I ended up not doing this as I felt this would only serve a purpose of internalizing api calls
-                        rather than traversing the net. I could have just as easily stored and served this via a
-                        database but that was not was asked via the instructions.
-                    <br/><br/>
-                        Lastly, there is a few links below on the footer where you can find my resume, github and
-                        the provided instructons.
+                    <div class="panel-body">
+                        <h4>To start running tests you need to do a few things.</h4>
+                        first is you need a superuser account. do this by running
+                        <strong>python3 manage.py creatsuperuser</strong>
+                        <br/>
+                        After you do this you can login to the admin page and add your tests and target hosts.
                     </div>
                     </div>
                     <h3>Notes:</h3>
                     <div class="panel panel-default">
                     <div class="panel-body">
-                        Regarding the deployement:
-                        This is running on AWS with Django and gunicorn.
-                        port forwarding is running through iptables rather than nginx as for this project I felt it
-                        was overkill as I was not serving up a domain name or routing to https
+                        When creating the yaml files for the test paths please make sure the paths are correct.
+                        an example yaml file is available for you to refrence and test your application from.
                     </div>
                     </div>
             </div>
