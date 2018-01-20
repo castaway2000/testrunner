@@ -1,9 +1,10 @@
 from ping3 import ping
+from testrunnerlib.test import HostInterface
 
 
-def pinger():
+def pinger(host):
     try:
-        ping_google = ping('google.com')  # PASS
+        ping_google = ping(host)  # PASS
         # ping_google = ping('google54321example.com')  # FAIL
         print(ping_google)
         if ping_google:
@@ -15,4 +16,5 @@ def pinger():
 
 
 if __name__ == '__main__':
-    print(pinger())
+    hosts = HostInterface()
+    print(pinger(hosts.host()))
