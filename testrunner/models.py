@@ -2,7 +2,7 @@ from __future__ import unicode_literals
 from django.db import models
 
 
-class Hosts(models.Model):
+class Host(models.Model):
     ip_address = models.CharField(max_length=16)
     port = models.IntegerField()
     name = models.CharField(max_length=256)

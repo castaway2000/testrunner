@@ -5,19 +5,16 @@
 # Filename: test.py
 # Description: main test running harness framework. 
 """
-from .outcomes import OutcomeParser
-from testrunner.models import Hosts
 
 
-class HostInterface:
-
+class HostInterface(object):
     def host(self):
         # TODO: get selected host info from frontend.
         return 'google.com'
 
     def port(self):
         # TODO: get selected port info from frontend.
-        return 'google.com'
+        return '80'
 
 
 class YamlInterface:

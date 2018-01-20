@@ -1,5 +1,8 @@
 # Use  the admin panel and in testunner under PageContent edit create a file that looks like this.
+projects:
+ - 'tourzan'
+ - 'all'
 testsuite:
- - testcases/ping_google.py
- - testcases/ping_google.py
- - testcases/ping_google.py
+ - 'testcases/ping_google.py'
+ - 'testcases/ping_google.py'
+ - 'testcases/ping_google.py'

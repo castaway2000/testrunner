@@ -1,6 +1,9 @@
 from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render
 from django.contrib.auth.models import User, Group
+from django.forms.models import model_to_dict
+
+from testrunner.models import Host, PageContent
 
 from dateutil import parser, tz
 from rest_framework import viewsets
@@ -15,9 +18,15 @@ def handle_datetime(date):
 
 
 def home(request):
+    testsuite_list = [model_to_dict(model) for model in PageContent.objects.all()]
+    host_list = [model_to_dict(model) for model in Host.objects.all()]
     if request.POST:
-        print(request.POST.items)
-    context = {'foo': 'foobar'}
+        print(request.POST['target'])
+        print(request.POST['testfile'])
+        # TODO: handle above data with testrunnerlib and get the required data to send to the back.
+        context = {'test_start': True}
+        return render(request, '../templates/tests.html', context)
+    context = {'host_list': host_list, 'testsuites': testsuite_list}
     return render(request, '../templates/index.html', context)
 
 
