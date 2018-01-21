@@ -1,22 +1,20 @@
-from ping3 import ping
 from testrunnerlib.test import HostInterface
 from testrunnerlib.outcomes import Outcomes
+
+from ping3 import ping
 
 
 def pinger(host):
     result = Outcomes()
     try:
-        ping_google = ping(host)  # PASS
-        # ping_google = ping('google54321example.com')  # FAIL
+        ping_google = ping(host)
         print(ping_google)
         if ping_google:
             return result.passed()
-        return print(1, result.failed())
+        msg = 'ping had an issue, the following is all we know %s' % ping_google
+        return result.failed(msg)
     except Exception as e:
-        print(e)
-        return print(2, result.aborted())
-
+        return result.aborted(exception=e)
 
 if __name__ == '__main__':
-    hosts = HostInterface()
-    print(pinger(hosts.host()))
+    pinger(HostInterface().target)

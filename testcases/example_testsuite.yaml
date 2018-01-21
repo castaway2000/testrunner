@@ -1,4 +1,4 @@
-# Use  the admin panel and in testunner under PageContent edit create a file that looks like this.
+# Use  the admin panel and in testrunner under Test suites edit create a yaml formated text file like this.
 projects:
  - 'tourzan'
  - 'all'

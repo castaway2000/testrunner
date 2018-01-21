@@ -1,7 +1,6 @@
 from django.contrib import admin
-from django.db import models
-from django_summernote.admin import SummernoteModelAdmin
-from .models import Host, PageContent
+from django import forms
+from .models import Host, TestSuite
 
 
 class HostAdmin(admin.ModelAdmin):
@@ -13,7 +12,10 @@ class HostAdmin(admin.ModelAdmin):
 admin.site.register(Host, HostAdmin)
 
 
-# Apply summernote to all TextField in model.
-class PageContentAdmin(SummernoteModelAdmin):  # instead of ModelAdmin
-    summer_note_fields = '__all__'
-admin.site.register(PageContent, PageContentAdmin)
+class TestSuiteAdmin(admin.ModelAdmin):
+    def formfield_for_dbfield(self, db_field, **kwargs):
+        formfield = super(TestSuiteAdmin, self).formfield_for_dbfield(db_field, **kwargs)
+        if db_field.name == 'text':
+            formfield.widget = forms.Textarea(attrs=formfield.widget.attrs)
+        return formfield
+admin.site.register(TestSuite, TestSuiteAdmin)

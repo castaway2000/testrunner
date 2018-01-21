@@ -7,37 +7,44 @@
 """
 
 
-class Outcomes(object):
+class Outcomes:
     def __init__(self):
-        PASS = self.passed()
-        FAIL = self.failed()
-        SKIP = self.skiped()
-        ABORT = self.aborted()
+        self.outcome = OutcomeParser
 
     def passed(self):
-        return 'PASS'
+        out = {'status': 'PASS'}
+        return self.outcome(info=out).logger()
 
-    def failed(self):
-        return 'FAIL'
+    def failed(self, data):
+        out = {'reason': data, 'status': 'FAIL'}
+        return self.outcome(info=out).logger()
 
     def skiped(self):
-        return 'SKIP'
+        out = {'status': 'SKIP'}
+        return self.outcome(info=out).logger()
 
-    def aborted(self):
-        return 'ABORT'
+    def aborted(self, exception=None):
+        if exception:
+            out = {'reason': exception, 'status': 'ABORT'}
+        else:
+            out = {'status': 'ABORT'}
+        return self.outcome(info=out).logger()
 
 
-class OutcomeParser(object):
-    def __init__(self):
-        self.details = self.logger()
-        self.results = self.results()
-        self.summary = self.summary()
+class OutcomeParser:
+    def __init__(self, info):
+        self.info = info
 
-    def logger(self, object):
+    def logger(self):
+        if self.info['status'] and self.info['reason']:
+            # register the outcome in the model
+            print(self.info['reason'])
+        else:
+            # register the status in the model
+            print(self.info['status'])
+
+    def results(self):
         return True
 
-    def results(self, object):
-        return True
-
-    def summary(self, object):
+    def summary(self):
         return True

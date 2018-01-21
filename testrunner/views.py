@@ -3,11 +3,11 @@ from django.shortcuts import render
 from django.contrib.auth.models import User, Group
 from django.forms.models import model_to_dict
 
-from testrunner.models import Host, PageContent
+from testrunner.models import Host, TestSuite
+from testrunnerlib.test import run_tests
 
 from dateutil import parser, tz
 from rest_framework import viewsets
-
 from .serializers import UserSerializer, GroupSerializer
 
 
@@ -18,12 +18,10 @@ def handle_datetime(date):
 
 
 def home(request):
-    testsuite_list = [model_to_dict(model) for model in PageContent.objects.all()]
+    testsuite_list = [model_to_dict(model) for model in TestSuite.objects.all()]
     host_list = [model_to_dict(model) for model in Host.objects.all()]
     if request.POST:
-        print(request.POST['target'])
-        print(request.POST['testfile'])
-        # TODO: handle above data with testrunnerlib and get the required data to send to the back.
+        run_tests(request.POST['target'], request.POST['testfile'])
         context = {'test_start': True}
         return render(request, '../templates/tests.html', context)
     context = {'host_list': host_list, 'testsuites': testsuite_list}
@@ -46,7 +44,6 @@ def results_page(request):
 
 def admin_page(request):
     return HttpResponseRedirect('admin')
-
 
 
 # created for the purpose of adding endpoints for repurposing the data but i think that might be overkill for this task.

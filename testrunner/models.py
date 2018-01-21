@@ -8,7 +8,7 @@ class Host(models.Model):
     name = models.CharField(max_length=256)
 
 
-class PageContent(models.Model):
+class TestSuite(models.Model):
     name = models.CharField(max_length=256)
     text = models.TextField()
     is_active = models.BooleanField(default=True)
